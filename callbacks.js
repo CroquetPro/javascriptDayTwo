@@ -26,10 +26,23 @@ var reader = readline.createInterface({
 
 function addNumbers(sum, numsLeft, completionCallback){
   if (numsLeft === 0) {
+    reader.close();
     return completionCallback(sum);
   }
-
-  reader.question("Give me a number", function callback(number) {
-    var num1 = parseInt(number);
+  reader.question("Give me a number ",
+      function (answer){
+    var number = parseInt(answer);
+    sum += number;
+    console.log("partial sum: " + sum);
+    numsLeft -= 1;
+    addNumbers(sum, numsLeft, completionCallback);
   });
+}
+
+// addNumbers(0, 3, function (sum) {
+//   console.log("Total Sum: " + sum);
+// });
+
+function absurdBubbleSort(){
+  
 }
